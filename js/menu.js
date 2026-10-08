@@ -1,4 +1,4 @@
-export function initMenu() {
+function initMenu() {
     const menuToggle = document.querySelector('.menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
     const navAuth = document.querySelector('.nav-auth');

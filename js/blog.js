@@ -25,7 +25,7 @@ const blogData = [
   }
 ];
 
-export function initBlog() {
+function initBlog() {
   const container = document.getElementById('blog-container');
   if (!container) return;
 

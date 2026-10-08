@@ -25,7 +25,7 @@ const customers = [
     }
 ];
 
-export function initCustomer() {
+function initCustomer() {
     let currentIndex = 0;
 
     const imgEl = document.getElementById('customerImg');

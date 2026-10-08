@@ -4,7 +4,7 @@ const slideData = [
     { img: "./images/property-3.jpg" }
 ];
 
-export function initSlider() {
+function initSlider() {
     // --- 1. XỬ LÝ CHO HERO SECTION ---
     const heroSection = document.querySelector('.hero-section');
     if (heroSection) {

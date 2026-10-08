@@ -1631,6 +1631,16 @@ textarea.form-control {
     .hero-content h1 {
         font-size: 32px;
     }
+
+    .hero-vector-arrow { 
+        display: none; 
+    }
+    
+    .slider-pagination { 
+        position: static; 
+        margin-top: 16px; 
+    }
+
     .unit-banner-content {
         flex-direction: column;
         gap: 20px;

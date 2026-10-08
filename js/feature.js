@@ -16,7 +16,7 @@ const propertyData = {
     ]
 };
 
-export function initFeature() {
+function initFeature() {
     const propertyTabs = document.querySelectorAll('.property-tab');
     const propertyGrid = document.getElementById('property-grid');
     if (!propertyGrid) return;

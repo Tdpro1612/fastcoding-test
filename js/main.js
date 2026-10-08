@@ -1,77 +1,30 @@
-import { initBlog } from './blog.js';
-import { initCustomer } from './customer.js';
-import { initFeature } from './feature.js';
-import { initMenu } from './menu.js';
-import { initSlider } from './slider.js';
+// Mỗi section chỉ khởi tạo MỘT LẦN, khi người dùng cuộn gần tới.
+const lazySections = [
+    { selector: '.hero-section',              init: initSlider },
+    { selector: '.featured-property-section', init: initFeature },
+    { selector: '.testimonials-section',      init: initCustomer },
+    { selector: '.blog-section',              init: initBlog }
+];
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Luôn chạy menu điều hướng đầu trang
     initMenu();
 
-    const sections = document.querySelectorAll('section[data-index]');
+    if (!('IntersectionObserver' in window)) {   // trình duyệt cũ: chạy hết
+        lazySections.forEach(item => item.init());
+        return;
+    }
 
-    const observerOptions = {
-        root: null,
-        rootMargin: '50px', 
-        threshold: 0.1       
-    };
-
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
-            const currentIndex = parseInt(entry.target.getAttribute('data-index'));
-
-            // Nếu section này đang hiển thị trên màn hình
-            if (entry.isIntersecting) {
-                // Kích hoạt section hiện tại và các section lân cận (±1)
-                sections.forEach(sec => {
-                    const index = parseInt(sec.getAttribute('data-index'));
-                    const distance = Math.abs(index - currentIndex);
-
-                    if (distance <= 1) {
-                        activateSection(index, sec);
-                    } else {
-                        deactivateSection(index, sec);
-                    }
-                });
-            }
+            if (!entry.isIntersecting) return;
+            const item = lazySections.find(s => entry.target.matches(s.selector));
+            if (item) item.init();
+            obs.unobserve(entry.target);          // chạy 1 lần rồi thôi theo dõi
         });
-    }, observerOptions);
+    }, { rootMargin: '200px 0px' });              // tải trước 200px
 
-    sections.forEach(sec => observer.observe(sec));
+    lazySections.forEach(({ selector }) => {
+        const el = document.querySelector(selector);
+        if (el) observer.observe(el);
+    });
 });
-
-// Hàm hiển thị/render nội dung khi cuộn tới
-function activateSection(index, sectionEl) {
-    // index 0: Hero & Customer slider
-    if (index === 0 && !sectionEl.dataset.rendered) {
-        initSlider();
-        initCustomer();
-        sectionEl.dataset.rendered = "true";
-    } 
-    // index 5 hoặc section Featured Property (bạn xem đúng index của thẻ featured property trong html của bạn nhé)
-    else if (sectionEl.classList.contains('featured-property-section') && !sectionEl.dataset.rendered) {
-        initFeature();
-        sectionEl.dataset.rendered = "true";
-    } 
-    // section Blog
-    else if (sectionEl.classList.contains('blog-section') && !sectionEl.dataset.rendered) {
-        initBlog();
-        sectionEl.dataset.rendered = "true";
-    }
-}
-
-// Hàm dọn dẹp nội dung khi cuộn đi xa để giải phóng bộ nhớ
-function deactivateSection(index, sectionEl) {
-    // Xóa nội dung phần Featured Property nếu ở xa
-    if (sectionEl.classList.contains('featured-property-section')) {
-        const grid = sectionEl.querySelector('#property-grid');
-        if (grid) grid.innerHTML = '';
-        sectionEl.dataset.rendered = ""; // Cho phép load lại khi cuộn quay về
-    } 
-    // Xóa nội dung phần Blog nếu ở xa
-    else if (sectionEl.classList.contains('blog-section')) {
-        const container = sectionEl.querySelector('#blog-container');
-        if (container) container.innerHTML = '';
-        sectionEl.dataset.rendered = ""; // Cho phép load lại khi cuộn quay về
-    }
-}
