@@ -32,14 +32,14 @@ function initBlog() {
   container.innerHTML = blogData.map(blog => `
     <div class="blog-card">
         <div class="blog-img">
-            <img src="${blog.image}" alt="${blog.title}" style="width:100%; height:100%; object-fit:cover;">
+            <img src="${blog.image}" alt="${blog.title}">
         </div>
         <div class="blog-content">
             <div class="blog-meta">
                 <span>${blog.category}</span>
             </div>
             <h3>${blog.title}</h3>
-            <p style="font-size: 13px; color: var(--text-light); margin-bottom: 20px;">${blog.description}</p>
+            <p class="blog-desc">${blog.description}</p>
             <div class="blog-footer">
                 <span><i class="fa-regular fa-clock"></i> ${blog.date}</span>
                 <span><i class="fa-regular fa-user"></i> By ${blog.author}</span>

@@ -1,6 +1,6 @@
 const propertyData = {
     apartment: [
-        { img: "./images/apartment_1.jpg", title: "The Stokes Appartment", location: "Cleveland, United States", price: "$2,32,120" },
+        { img: "./images/apartment_1.jpg", title: "The Stokes Apartment", location: "Cleveland, United States", price: "$2,32,120" },
         { img: "./images/apartment_2.jpg", title: "Modern City Apartment", location: "New York, United States", price: "$3,10,000" },
         { img: "./images/apartment_3.jpg", title: "Luxury Glass Apartment", location: "Chicago, United States", price: "$2,85,000" }
     ],
@@ -28,7 +28,7 @@ function initFeature() {
         propertyGrid.innerHTML = items.map(item => `
             <div class="property-card">
                 <div class="property-img">
-                    <img src="${item.img}" alt="${item.title}" style="width:100%; height:100%; object-fit:cover;">
+                    <img src="${item.img}" alt="${item.title}">
                 </div>
                 <div class="property-details">
                     <h3>${item.title}</h3>
