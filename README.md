@@ -17,7 +17,7 @@ fastcoding-test/
 │   └── ....              
 │
 ├── images/                 # Thư mục chứa hình ảnh icon, banner, avatar từ thiết kế
-│   ├── background_colum.svg
+│   ├── background_cl.svg
 │   ├── Ellipse 1890.svg
 │   └── ...
 │
