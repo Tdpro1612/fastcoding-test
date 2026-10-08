@@ -1220,6 +1220,18 @@ ul {
     overflow: hidden;
 }
 
+.card-sf {
+    background-image: url('../images/san_francisco.jpg');
+}
+
+.card-dc {
+    background-image: url('../images/washington_dc.jpg');
+}
+
+.card-chicago {
+    background-image: url('../images/chicago.jpg');
+}
+
 /* Thêm lớp phủ tối màu (overlay) dùng chung để không phải viết lặp trong linear-gradient */
 .project-card::before {
     content: '';
@@ -1270,6 +1282,7 @@ ul {
 
 .newsletter-box input {
     flex: 1;
+    min-width: 0;
     border: none;
     background: transparent;
     padding: 12px 15px;
@@ -1714,4 +1727,27 @@ textarea.form-control {
     section {
         padding: 30px 0;
     }
+}
+
+/* ---- FIX mobile: testimonial xếp dọc, nút prev/next không tràn ---- */
+@media (max-width: 768px) {
+    .testimonial-card {
+        flex-direction: column;
+        padding: 24px;
+        gap: 24px;
+        text-align: center;
+    }
+    .testimonial-img-container {
+        width: 100%;
+        max-width: 280px;
+    }
+    .testimonial-card-wrapper { padding: 0 22px; }
+    .prev-btn { left: 0; }
+    .next-btn { right: 0; }
+}
+
+/* ---- FIX mobile: số 1 2 3 không đè lên tab HOUSE ---- */
+@media (max-width: 768px) {
+    .slider-indicators { margin-bottom: 36px; }
+    .slider-pagination { position: absolute; left: 0; bottom: -32px; margin-top: 0; }
 }
