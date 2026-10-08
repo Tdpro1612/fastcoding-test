@@ -39,7 +39,7 @@ Responsive Design tương thích hoàn hảo trên màn hình PC và Smartphone.
 Để hoàn thành bài test một cách mượt mà, đúng yêu cầu và tránh bị rối, bạn hãy triển khai theo các bước chiến lược sau:
 
 ### Bước 1: Khai thác tài nguyên từ Figma
-* Truy cập link Figma được cấp[cite: 1], xuất (`export`) toàn bộ hình ảnh, icon cần thiết về thư mục `images/`.
+* Truy cập link Figma được cấp, xuất (`export`) toàn bộ hình ảnh, icon cần thiết về thư mục `images/`.
 * Lấy mã màu chủ đạo (ví dụ màu cam đặc trưng `#FF4500` hoặc mã màu trên Figma) và font chữ chính để cài đặt chung.
 
 ### Bước 2: Dựng khung sườn HTML (Macro Layout)
